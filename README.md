@@ -1,1 +1,1 @@
-[Click here](jediale.github.io) ... don't be scared!
+[Click here](https://jediale.github.io) ... don't be scared!
