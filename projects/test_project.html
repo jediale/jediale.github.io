@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Title — J Alessandro Briseño Tapia</title>
+  <style>
+    body {
+      font-family: Georgia, serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      color: #222;
+      line-height: 1.7;
+    }
+    nav {
+      margin-bottom: 2rem;
+      font-family: Arial, sans-serif;
+      font-size: 0.95rem;
+    }
+    nav a {
+      margin-right: 1.2rem;
+      color: #0055aa;
+      text-decoration: none;
+    }
+    nav a:hover { text-decoration: underline; }
+
+    h1 { font-size: 2rem; margin-bottom: 0.3rem; }
+    .subtitle {
+      color: #666;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      font-family: Arial, sans-serif;
+    }
+
+    .hero-image {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 2rem;
+    }
+
+    .meta {
+      display: flex;
+      gap: 2rem;
+      font-family: Arial, sans-serif;
+      font-size: 0.9rem;
+      color: #555;
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+      padding: 0.8rem 0;
+      margin-bottom: 2rem;
+    }
+    .meta span strong { color: #222; }
+
+    h2 {
+      font-size: 1.3rem;
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 0.3rem;
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .image-grid img {
+      width: 100%;
+      border-radius: 4px;
+      object-fit: cover;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 3rem;
+      font-family: Arial, sans-serif;
+      font-size: 0.9rem;
+      color: #0055aa;
+      text-decoration: none;
+    }
+    .back-link:hover { text-decoration: underline; }
+
+    footer {
+      margin-top: 4rem;
+      padding-top: 1rem;
+      border-top: 1px solid #ddd;
+      font-family: Arial, sans-serif;
+      font-size: 0.85rem;
+      color: #888;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/index.html">Home</a>
+    <a href="/projects.html">Projects</a>
+    <a href="/mystory.html">My Story</a>
+    <a href="/contact.html">Contact</a>
+  </nav>
+
+  <!-- PAGE TITLE -->
+  <h1>Project Title Goes Here</h1>
+  <p class="subtitle">One-line summary of what this project is about</p>
+
+  <!-- HERO IMAGE (replace src with your actual image path) -->
+  <img class="hero-image" src="/images/project1.jpg" alt="Description of image" />
+
+  <!-- PROJECT META INFO -->
+  <div class="meta">
+    <span><strong>Date:</strong> Spring 2025</span>
+    <span><strong>Course / Context:</strong> MIT 2.14</span>
+    <span><strong>Tools:</strong> Python, MuJoCo</span>
+  </div>
+
+  <!-- OVERVIEW -->
+  <h2>Overview</h2>
+  <p>
+    Write 2–3 sentences describing what this project is and why you did it.
+    What problem were you solving? What was the goal?
+  </p>
+
+  <!-- APPROACH / METHODS -->
+  <h2>Approach</h2>
+  <p>
+    Describe how you tackled the problem. What methods, tools, or techniques did you use?
+    This is a good place to show technical depth.
+  </p>
+
+  <!-- IMAGES (optional — delete if not needed) -->
+  <div class="image-grid">
+    <img src="/images/project1_detail1.jpg" alt="Detail 1" />
+    <img src="/images/project1_detail2.jpg" alt="Detail 2" />
+  </div>
+
+  <!-- RESULTS -->
+  <h2>Results</h2>
+  <p>
+    What did you achieve? Include any quantitative results, demos, or outcomes.
+    What did you learn?
+  </p>
+
+  <!-- BACK LINK -->
+  <a class="back-link" href="/projects.html">← Back to Projects</a>
+
+  <footer>
+    © 2026 J Alessandro Briseño Tapia | Built with HTML &amp; CSS
+  </footer>
+
+</body>
+</html>
