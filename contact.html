@@ -6,7 +6,7 @@
   <title>Contact</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: Verdana, sans-serif;
       margin: 0;
       background-color: #f5f5f5;
       color: #333;
@@ -61,8 +61,21 @@
     <h1>Contact Me</h1>
     <nav>
       <a href="index.html">Home</a>
-      <a href="projects.html">Projects</a>
+      <div class="dropdown" id="proj-dropdown">
+        <button class="dropdown-toggle" onclick="document.getElementById('proj-dropdown').classList.toggle('open')">
+          Projects ▾
+        </button>
+        <div class="dropdown-menu">
+          <a class="all-link" href="projects/all_projects.html">All Projects</a>
+          <a href="projects/research.html">Research</a>
+          <a href="projects/engineering.html">Engineering</a>
+          <a href="projects/coursework.html">Coursework</a>
+          <a href="projects/music.html">Music</a>
+          <a href="miscellaneous.html">Miscellaneous</a>
+        </div>
+      </div>
       <a href="mystory.html">My Story</a>
+      <a href="contact.html">Contact</a>
     </nav>
   </header>
 
