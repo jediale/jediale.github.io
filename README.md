@@ -1,1 +1,1 @@
-search jediale.github.io ... don't be scared!
+[Click here](jediale.github.io) ... don't be scared!
