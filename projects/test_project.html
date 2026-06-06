@@ -6,7 +6,7 @@
   <title>Project Title — J Alessandro Briseño Tapia</title>
   <style>
     body {
-      font-family: Georgia, serif;
+      font-family: Chalkboard, serif;
       max-width: 800px;
       margin: 0 auto;
       padding: 2rem 1.5rem;
@@ -43,7 +43,8 @@
 
     .meta {
       display: flex;
-      gap: 2rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
       font-family: Arial, sans-serif;
       font-size: 0.9rem;
       color: #555;
@@ -62,17 +63,90 @@
       padding-bottom: 0.3rem;
     }
 
-    .image-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem;
-      margin: 1.5rem 0;
+    /* ── GALLERY ── */
+    .gallery {
+      margin: 2rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
     }
-    .image-grid img {
+
+    /* Single full-width item */
+    .gallery-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .gallery-item img,
+    .gallery-item video,
+    .gallery-item .video-embed {
       width: 100%;
-      border-radius: 4px;
-      object-fit: cover;
+      border-radius: 6px;
+      display: block;
     }
+
+    /* YouTube / iframe embed wrapper — keeps 16:9 */
+    .video-embed {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 6px;
+      background: #000;
+    }
+    .video-embed iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+
+    .gallery-caption {
+      font-family: Arial, sans-serif;
+      font-size: 0.88rem;
+      color: #555;
+      line-height: 1.5;
+    }
+    .gallery-caption strong {
+      color: #222;
+      display: block;
+      margin-bottom: 0.15rem;
+      font-size: 0.92rem;
+    }
+
+    /* Two-column grid row */
+    .gallery-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 520px) {
+      .gallery-row-2 { grid-template-columns: 1fr; }
+    }
+
+    /* Three-column grid row */
+    .gallery-row-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.8rem;
+    }
+    @media (max-width: 600px) {
+      .gallery-row-3 { grid-template-columns: 1fr 1fr; }
+    }
+
+    .gallery-row-2 .gallery-item,
+    .gallery-row-3 .gallery-item { gap: 0.4rem; }
+
+    .gallery-row-2 img,
+    .gallery-row-3 img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    /* ── END GALLERY ── */
 
     .back-link {
       display: inline-block;
@@ -104,48 +178,116 @@
     <a href="/contact.html">Contact</a>
   </nav>
 
-  <!-- PAGE TITLE -->
   <h1>Project Title Goes Here</h1>
   <p class="subtitle">One-line summary of what this project is about</p>
 
-  <!-- HERO IMAGE (replace src with your actual image path) -->
-  <img class="hero-image" src="/images/project1.jpg" alt="Description of image" />
+  <img class="hero-image" src="/images/project1.jpg" alt="Hero image description" />
 
-  <!-- PROJECT META INFO -->
   <div class="meta">
     <span><strong>Date:</strong> Spring 2025</span>
     <span><strong>Course / Context:</strong> MIT 2.14</span>
     <span><strong>Tools:</strong> Python, MuJoCo</span>
   </div>
 
-  <!-- OVERVIEW -->
   <h2>Overview</h2>
   <p>
     Write 2–3 sentences describing what this project is and why you did it.
     What problem were you solving? What was the goal?
   </p>
 
-  <!-- APPROACH / METHODS -->
   <h2>Approach</h2>
   <p>
     Describe how you tackled the problem. What methods, tools, or techniques did you use?
     This is a good place to show technical depth.
   </p>
 
-  <!-- IMAGES (optional — delete if not needed) -->
-  <div class="image-grid">
-    <img src="/images/project1_detail1.jpg" alt="Detail 1" />
-    <img src="/images/project1_detail2.jpg" alt="Detail 2" />
-  </div>
+  <!-- ═══════════════════════════════════════════
+       GALLERY
+       Mix and match the blocks below as needed.
+       ═══════════════════════════════════════════ -->
+  <h2>Gallery</h2>
+  <div class="gallery">
 
-  <!-- RESULTS -->
+    <!-- FULL-WIDTH IMAGE with title + description -->
+    <div class="gallery-item">
+      <img src="/images/project1_full.jpg" alt="System overview diagram" />
+      <div class="gallery-caption">
+        <strong>System overview</strong>
+        Describe what's shown here — what the viewer should notice or understand from this image.
+      </div>
+    </div>
+
+    <!-- TWO IMAGES SIDE BY SIDE -->
+    <div class="gallery-row-2">
+      <div class="gallery-item">
+        <img src="/images/project1_a.jpg" alt="Before" />
+        <div class="gallery-caption">
+          <strong>Before</strong>
+          Short caption for the left image.
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/project1_b.jpg" alt="After" />
+        <div class="gallery-caption">
+          <strong>After</strong>
+          Short caption for the right image.
+        </div>
+      </div>
+    </div>
+
+    <!-- THREE IMAGES IN A ROW (good for process shots) -->
+    <div class="gallery-row-3">
+      <div class="gallery-item">
+        <img src="/images/project1_step1.jpg" alt="Step 1" />
+        <div class="gallery-caption"><strong>Step 1</strong> Caption here.</div>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/project1_step2.jpg" alt="Step 2" />
+        <div class="gallery-caption"><strong>Step 2</strong> Caption here.</div>
+      </div>
+      <div class="gallery-item">
+        <img src="/images/project1_step3.jpg" alt="Step 3" />
+        <div class="gallery-caption"><strong>Step 3</strong> Caption here.</div>
+      </div>
+    </div>
+
+    <!-- SELF-HOSTED VIDEO (mp4 file in your repo) -->
+    <div class="gallery-item">
+      <video controls poster="/images/project1_video_thumb.jpg">
+        <source src="/videos/project1_demo.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <div class="gallery-caption">
+        <strong>Demo video</strong>
+        Describe what's happening in the video — key moments or results to watch for.
+      </div>
+    </div>
+
+    <!-- YOUTUBE EMBED (replace VIDEO_ID with your actual YouTube video ID) -->
+    <div class="gallery-item">
+      <div class="video-embed">
+        <iframe
+          src="https://www.youtube.com/embed/VIDEO_ID"
+          title="YouTube video"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="gallery-caption">
+        <strong>YouTube video title</strong>
+        Describe what this video shows and why it's relevant to the project.
+      </div>
+    </div>
+
+  </div>
+  <!-- ═══════════════ END GALLERY ═══════════════ -->
+
   <h2>Results</h2>
   <p>
     What did you achieve? Include any quantitative results, demos, or outcomes.
     What did you learn?
   </p>
 
-  <!-- BACK LINK -->
   <a class="back-link" href="/projects.html">← Back to Projects</a>
 
   <footer>
