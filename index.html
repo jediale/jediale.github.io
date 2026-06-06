@@ -8,14 +8,14 @@
     /* ====== Basic Reset ====== */
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: Verdana, sans-serif;
       line-height: 1.6;
       background-color: #f5f5f5;
       color: #333;
     }
 
     header {
-      background: #222;
+      background: #046749;
       color: #fff;
       padding: 1rem 2rem;
       text-align: center;
@@ -39,6 +39,74 @@
     nav a:hover {
       text-decoration: underline;
     }
+
+    /* ====== Dropdown ====== */
+    .dropdown {
+      display: inline-block;
+      position: relative;
+      margin: 0 1rem;
+    }
+
+    .dropdown-toggle {
+      background: none;
+      border: none;
+      color: #fff;
+      font-family: Verdana, sans-serif;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .dropdown-toggle:hover {
+      text-decoration: underline;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+      border-radius: 6px;
+      min-width: 160px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      z-index: 100;
+      overflow: hidden;
+    }
+
+    .dropdown.open .dropdown-menu {
+      display: block;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 0.5rem 1rem;
+      color: #222;
+      font-weight: normal;
+      font-size: 0.9rem;
+      text-decoration: none;
+      border-bottom: 1px solid #f0f0f0;
+      margin: 0;
+    }
+
+    .dropdown-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-menu a:hover {
+      background: #f5f5f5;
+      color: #00422d;
+      text-decoration: none;
+    }
+
+    .dropdown-menu .all-link {
+      font-weight: bold;
+      background: #f9f9f9;
+      color: #00422d;
+    }
+    /* ====== End Dropdown ====== */
 
     .container {
       max-width: 1000px;
@@ -100,7 +168,20 @@
     <h1>J Alessandro Briseño Tapia</h1>
     <nav>
       <a href="index.html">Home</a>
-      <a href="projects.html">Projects</a>
+      <div class="dropdown" id="proj-dropdown">
+        <button class="dropdown-toggle" onclick="document.getElementById('proj-dropdown').classList.toggle('open')">
+          Projects ▾
+        </button>
+        <div class="dropdown-menu">
+          <a class="all-link" href="projects/all_projects.html">All Projects</a>
+          <a href="projects/research.html">Research</a>
+          <a href="projects/engineering.html">Engineering</a>
+          <a href="projects/coursework.html">Coursework</a>
+          <a href="projects/music.html">Music</a>
+          <a href="projects/cosplay.html">Cosplay</a>
+          <a href="projects/visual_art.html">Visual Art</a>
+        </div>
+      </div>
       <a href="mystory.html">My Story</a>
       <a href="contact.html">Contact</a>
       <a href="projects/test_project.html">Test</a>
@@ -110,21 +191,21 @@
   <div class="container">
     <!-- About Section -->
     <section class="about">
-      <img src="images/OTHER/Brazil_Selfie.jpg" alt="My Photo">
+      <img src="media/_*SITE_MEDIA/Brazil_Selfie.jpg" alt="My Photo">
       <div>
         <h2>About Me</h2>
-        <p>Hello, I’m Alessandro! I graduated MIT in 2026 double majoring in Mechanical Engineering and Physics. For summer 2026, I am conducting research at Instituto Politécnico Nacional (IPN) in México City. This is my personal portfolio showcasing my projects, ideas, and work.  </p>
-        <p> In my spare time, I play ultimate frisbee and watch TV and movies. I'm a Mariachi musician, and I also enjoy learning languages, including Spanish, French, Portuguese, and Japanese.</p>
+        <p>Hello, I'm Alessandro! I graduated MIT in 2026 double majoring in Mechanical Engineering and Physics. For summer 2026, I am conducting research at Instituto Politécnico Nacional (IPN) in México City. This is my personal portfolio showcasing my projects, ideas, and work.  </p>
+        <p> In my spare time, I run, play ultimate frisbee, and enjoy TV and movies. I'm a Mariachi musician, and I also learn languages, including Spanish, French, Portuguese, and Japanese.</p>
       </div>
     </section>
 
     <!-- Projects Section -->
     <section id="projects">
-      <h2>Project Highlights<a href="projects.html">(See More)</a></h2>
+      <h2>Project Highlights<a href="projects/all_projects.html">(See More)</a></h2>
       <div class="projects">
         <!-- Project 1 -->
         <div class="project-card">
-          <img src="images/project1.jpg" alt="Project 1">
+          <img src="media/project1.jpg" alt="Project 1">
           <h3>MIT 2.14: Design and Analysis of Feedback Control Systems</h3>
           <p>Short description of the project goes here. Explain the purpose and key features.</p>
           <a href="projects/project1.html">Read more →</a>
@@ -132,7 +213,7 @@
 
         <!-- Project 2 -->
         <div class="project-card">
-          <img src="images/project2.jpg" alt="Project 2">
+          <img src="media/project2.jpg" alt="Project 2">
           <h3>GigaByke Restoration</h3>
           <p>Short description of the project goes here. Explain the purpose and key features.</p>
           <a href="projects/project2.html">Read more →</a>
@@ -140,7 +221,7 @@
 
         <!-- Project 3 -->
         <div class="project-card">
-          <img src="images/project3.jpg" alt="Project 3">
+          <img src="media/project3.jpg" alt="Project 3">
           <h3>Machine Learning IG Account: ale_drinkz</h3>
           <p>Short description of the project goes here. Explain the purpose and key features.</p>
           <a href="projects/project3.html">Read more →</a>
@@ -153,6 +234,14 @@
   <footer>
     <p>© 2026 J Alessandro Briseño Tapia | Built with HTML & CSS</p>
   </footer>
+
+  <script>
+    /* Close dropdown when clicking outside */
+    document.addEventListener('click', function(e) {
+      var d = document.getElementById('proj-dropdown');
+      if (d && !d.contains(e.target)) d.classList.remove('open');
+    });
+  </script>
 </body>
 </html>
 

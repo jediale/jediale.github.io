@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Projects — J Alessandro Briseño Tapia</title>
+  <style>
+    /* ====== Basic Reset ====== */
+    body {
+      margin: 0;
+      font-family: Verdana, sans-serif;
+      line-height: 1.6;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+
+    header {
+      background: #00422d;
+      color: #fff;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    nav {
+      margin-top: 0.5rem;
+    }
+
+    nav a {
+      color: #fff;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* ====== Dropdown ====== */
+    .dropdown {
+      display: inline-block;
+      position: relative;
+      margin: 0 1rem;
+    }
+
+    .dropdown-toggle {
+      background: none;
+      border: none;
+      color: #fff;
+      font-family: Verdana, sans-serif;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .dropdown-toggle:hover {
+      text-decoration: underline;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+      border-radius: 6px;
+      min-width: 160px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      z-index: 100;
+      overflow: hidden;
+    }
+
+    .dropdown.open .dropdown-menu {
+      display: block;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 0.5rem 1rem;
+      color: #222;
+      font-weight: normal;
+      font-size: 0.9rem;
+      text-decoration: none;
+      border-bottom: 1px solid #f0f0f0;
+      margin: 0;
+    }
+
+    .dropdown-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-menu a:hover {
+      background: #f5f5f5;
+      color: #00422d;
+      text-decoration: none;
+    }
+
+    .dropdown-menu .all-link {
+      font-weight: bold;
+      background: #f9f9f9;
+      color: #00422d;
+    }
+    /* ====== End Dropdown ====== */
+
+    /* ====== Page heading ====== */
+    .page-heading {
+      text-align: center;
+      padding: 2rem 2rem 0;
+    }
+
+    .page-heading h2 {
+      font-size: 1.6rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .page-heading p {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    /* ====== Timeline ====== */
+    .scroll-hint {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #888;
+      padding: 1rem 0 0.5rem;
+    }
+
+    .timeline-wrapper {
+      overflow-x: auto;
+      padding: 2rem 3rem 3rem;
+      cursor: grab;
+      user-select: none;
+    }
+
+    .timeline-wrapper:active {
+      cursor: grabbing;
+    }
+
+    /* Scrollbar styling */
+    .timeline-wrapper::-webkit-scrollbar {
+      height: 6px;
+    }
+    .timeline-wrapper::-webkit-scrollbar-track {
+      background: #e0e0e0;
+      border-radius: 3px;
+    }
+    .timeline-wrapper::-webkit-scrollbar-thumb {
+      background: #00422d;
+      border-radius: 3px;
+    }
+
+    .timeline {
+      display: flex;
+      align-items: flex-start;
+      position: relative;
+      min-width: max-content;
+      padding-top: 60px;
+    }
+
+    /* The horizontal line */
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 80px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: #00422d;
+    }
+
+    /* "PRESENT" label on the left */
+    .timeline-end-label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-right: 1.5rem;
+      position: relative;
+      top: 52px;
+    }
+
+    .timeline-end-label span {
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: #00422d;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* Arrow pointing right (oldest direction) at the end */
+    .timeline-arrow {
+      display: flex;
+      align-items: center;
+      position: relative;
+      top: 52px;
+      padding-left: 0.5rem;
+    }
+
+    .timeline-arrow span {
+      font-size: 0.75rem;
+      color: #888;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      padding-left: 0.5rem;
+    }
+
+    .timeline-arrow::before {
+      content: '';
+      display: block;
+      width: 0;
+      height: 0;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      border-left: 12px solid #00422d;
+    }
+
+    .timeline-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 220px;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    /* Alternate cards above/below */
+    .timeline-item:nth-child(even) {
+      flex-direction: column;
+    }
+
+    .timeline-item:nth-child(odd) {
+      flex-direction: column-reverse;
+      margin-top: 166px;
+    }
+
+    .dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #00422d;
+      border: 3px solid #fff;
+      outline: 2px solid #00422d;
+      flex-shrink: 0;
+      z-index: 1;
+    }
+
+    .connector {
+      width: 2px;
+      height: 28px;
+      background: #00422d;
+      flex-shrink: 0;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 0.9rem 1rem;
+      width: 190px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    }
+
+    .card img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-bottom: 0.5rem;
+      background: #e0e0e0;
+    }
+
+    .card-date {
+      font-size: 0.72rem;
+      color: #00422d;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.2rem;
+    }
+
+    .card-category {
+      display: inline-block;
+      font-size: 0.68rem;
+      background: #e8f3ee;
+      color: #00422d;
+      padding: 2px 7px;
+      border-radius: 20px;
+      margin-bottom: 0.4rem;
+    }
+
+    .card h3 {
+      font-size: 0.82rem;
+      margin-bottom: 0.3rem;
+      line-height: 1.4;
+    }
+
+    .card p {
+      font-size: 0.75rem;
+      color: #666;
+      line-height: 1.5;
+      margin-bottom: 0.5rem;
+    }
+
+    .card a {
+      font-size: 0.75rem;
+      color: #00422d;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .card a:hover {
+      text-decoration: underline;
+    }
+
+    /* ====== Footer ====== */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      margin-top: 3rem;
+      background: #222;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>J Alessandro Briseño Tapia</h1>
+    <nav>
+      <a href="../index.html">Home</a>
+      <div class="dropdown" id="proj-dropdown">
+        <button class="dropdown-toggle" onclick="document.getElementById('proj-dropdown').classList.toggle('open')">
+          Projects ▾
+        </button>
+        <div class="dropdown-menu">
+          <a class="all-link" href="all_projects.html">All Projects</a>
+          <a href="research.html">Research</a>
+          <a href="engineering.html">Engineering</a>
+          <a href="coursework.html">Coursework</a>
+          <a href="music.html">Music</a>
+          <a href="cosplay.html">Cosplay</a>
+          <a href="visual-art.html">Visual Art</a>
+        </div>
+      </div>
+      <a href="../mystory.html">My Story</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <div class="page-heading">
+    <h2>All Projects</h2>
+    <p>Scroll right to travel back in time →</p>
+  </div>
+
+  <p class="scroll-hint">Most recent ← drag or scroll → oldest</p>
+
+  <div class="timeline-wrapper" id="tw">
+    <div class="timeline">
+
+      <!-- PRESENT label on the far left -->
+      <div class="timeline-end-label">
+        <span>Now</span>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════
+           PROJECTS — most recent first, oldest last.
+           To add a project, copy one <div class="timeline-item"> block.
+           Odd-numbered items hang BELOW the line.
+           Even-numbered items hang ABOVE the line.
+           ═══════════════════════════════════════════════ -->
+
+      <!-- Item 1 (above line) -->
+      <div class="timeline-item">
+        <div class="card">
+          <img src="../media/project_quadruped.jpg" alt="MuJoCo Quadruped">
+          <div class="card-date">Spring 2026</div>
+          <span class="card-category">Research</span>
+          <h3>MuJoCo Quadruped RL</h3>
+          <p>Reinforcement learning for quadruped locomotion using MuJoCo and Raspberry Pi.</p>
+          <a href="project_quadruped.html">Read more →</a>
+        </div>
+        <div class="connector"></div>
+        <div class="dot"></div>
+      </div>
+
+      <!-- Item 2 (below line) -->
+      <div class="timeline-item">
+        <div class="dot"></div>
+        <div class="connector"></div>
+        <div class="card">
+          <img src="../media/project3.jpg" alt="ale_drinkz">
+          <div class="card-date">Fall 2025</div>
+          <span class="card-category">Visual Art</span>
+          <h3>Machine Learning IG: ale_drinkz</h3>
+          <p>Machine learning-generated cocktail art posted to an Instagram account.</p>
+          <a href="project3.html">Read more →</a>
+        </div>
+      </div>
+
+      <!-- Item 3 (above line) -->
+      <div class="timeline-item">
+        <div class="card">
+          <img src="../media/project2.jpg" alt="GigaByke">
+          <div class="card-date">Summer 2025</div>
+          <span class="card-category">Engineering</span>
+          <h3>GigaByke Restoration</h3>
+          <p>Full mechanical restoration of an electric bike, including motor and battery systems.</p>
+          <a href="project2.html">Read more →</a>
+        </div>
+        <div class="connector"></div>
+        <div class="dot"></div>
+      </div>
+
+      <!-- Item 4 (below line) -->
+      <div class="timeline-item">
+        <div class="dot"></div>
+        <div class="connector"></div>
+        <div class="card">
+          <img src="../media/project1.jpg" alt="MIT 2.14">
+          <div class="card-date">Spring 2025</div>
+          <span class="card-category">Coursework</span>
+          <h3>MIT 2.14: Feedback Control Systems</h3>
+          <p>Design and analysis of feedback control systems for mechanical applications.</p>
+          <a href="project1.html">Read more →</a>
+        </div>
+      </div>
+
+      <!-- Item 5 (above line) — add more projects here following the same pattern -->
+      <div class="timeline-item">
+        <div class="card">
+          <img src="../media/project_music.jpg" alt="Mariachi">
+          <div class="card-date">2022 – 2026</div>
+          <span class="card-category">Music</span>
+          <h3>MIT Mariachi Club</h3>
+          <p>Led and performed with MIT's Mariachi club at campus and community events.</p>
+          <a href="project_music.html">Read more →</a>
+        </div>
+        <div class="connector"></div>
+        <div class="dot"></div>
+      </div>
+
+      <!-- Arrow pointing right = "older" direction -->
+      <div class="timeline-arrow">
+        <span>older</span>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 J Alessandro Briseño Tapia | Built with HTML & CSS</p>
+  </footer>
+
+  <script>
+    /* Close dropdown when clicking outside */
+    document.addEventListener('click', function(e) {
+      var d = document.getElementById('proj-dropdown');
+      if (d && !d.contains(e.target)) d.classList.remove('open');
+    });
+
+    /* Click-and-drag to scroll */
+    var tw = document.getElementById('tw');
+    var isDown = false, startX, scrollLeft;
+    tw.addEventListener('mousedown', function(e) {
+      isDown = true;
+      startX = e.pageX - tw.offsetLeft;
+      scrollLeft = tw.scrollLeft;
+    });
+    tw.addEventListener('mouseleave', function() { isDown = false; });
+    tw.addEventListener('mouseup', function() { isDown = false; });
+    tw.addEventListener('mousemove', function(e) {
+      if (!isDown) return;
+      e.preventDefault();
+      tw.scrollLeft = scrollLeft - (e.pageX - tw.offsetLeft - startX);
+    });
+  </script>
+
+</body>
+</html>
+
+<!-- magic words: git add ., git commit -m "comment", git push origin main -->
