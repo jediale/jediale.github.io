@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- favicon -->
+  <link rel="icon" type="image/png" href="/favicon.png?v=2">
+  <link rel="apple-touch-icon" href="/favicon.png?v=2">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Title — J Alessandro Briseño Tapia</title>
+  <style>
+    /* ====== Basic Reset ====== */
+    body {
+      margin: 0;
+      font-family: Verdana, sans-serif;
+      line-height: 1.7;
+      background-color: #f5f5f5;
+      color: #222;
+    }
+
+    /* ====== Header (matches index.html) ====== */
+    header {
+      background: #00422d;
+      color: #fff;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    nav {
+      margin-top: 0.5rem;
+    }
+
+    nav a {
+      color: #fff;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* ====== Dropdown ====== */
+    .dropdown {
+      display: inline-block;
+      position: relative;
+      margin: 0 1rem;
+    }
+
+    .dropdown-toggle {
+      background: none;
+      border: none;
+      color: #fff;
+      font-family: Verdana, sans-serif;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .dropdown-toggle:hover {
+      text-decoration: underline;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+      border-radius: 6px;
+      min-width: 160px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      z-index: 100;
+      overflow: hidden;
+    }
+
+    .dropdown.open .dropdown-menu {
+      display: block;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 0.5rem 1rem;
+      color: #222;
+      font-weight: normal;
+      font-size: 0.9rem;
+      text-decoration: none;
+      border-bottom: 1px solid #f0f0f0;
+      margin: 0;
+    }
+
+    .dropdown-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-menu a:hover {
+      background: #f5f5f5;
+      color: #00422d;
+      text-decoration: none;
+    }
+
+    .dropdown-menu .all-link {
+      font-weight: bold;
+      background: #f9f9f9;
+      color: #00422d;
+    }
+    /* ====== End Dropdown ====== */
+
+    /* ====== Page content ====== */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    h1 { font-size: 2rem; margin-bottom: 0.3rem; }
+
+    .subtitle {
+      color: #666;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero-image {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 2rem;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      font-size: 0.9rem;
+      color: #555;
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+      padding: 0.8rem 0;
+      margin-bottom: 2rem;
+    }
+    .meta span strong { color: #222; }
+
+    h2 {
+      font-size: 1.3rem;
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 0.3rem;
+    }
+
+    /* ── GALLERY ── */
+    .gallery {
+      margin: 2rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    .gallery-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .gallery-item img,
+    .gallery-item video,
+    .gallery-item .video-embed {
+      width: 100%;
+      border-radius: 6px;
+      display: block;
+    }
+
+    .video-embed {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 6px;
+      background: #000;
+    }
+    .video-embed iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+
+    .gallery-caption {
+      font-size: 0.88rem;
+      color: #555;
+      line-height: 1.5;
+    }
+    .gallery-caption strong {
+      color: #222;
+      display: block;
+      margin-bottom: 0.15rem;
+      font-size: 0.92rem;
+    }
+
+    .gallery-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 520px) {
+      .gallery-row-2 { grid-template-columns: 1fr; }
+    }
+
+    .gallery-row-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.8rem;
+    }
+    @media (max-width: 600px) {
+      .gallery-row-3 { grid-template-columns: 1fr 1fr; }
+    }
+
+    .gallery-row-2 .gallery-item,
+    .gallery-row-3 .gallery-item { gap: 0.4rem; }
+
+    .gallery-row-2 img,
+    .gallery-row-3 img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    /* ── END GALLERY ── */
+
+    /* ── FILES ── */
+    .file-section { display: flex; flex-direction: column; gap: 2rem; margin: 1.5rem 0; }
+    .file-item { border: 1px solid #ddd; border-radius: 6px; overflow: hidden; }
+    .file-header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.7rem 1rem; background: #f7f7f7;
+      font-size: 0.9rem;
+    }
+    .download-btn {
+      background: #00422d; color: white; padding: 0.3rem 0.8rem;
+      border-radius: 4px; text-decoration: none; font-size: 0.85rem;
+    }
+    .download-btn:hover { background: #005a3c; }
+    .pdf-viewer { width: 100%; height: 600px; border: none; display: block; }
+    /* ── END FILES ── */
+
+    .back-link {
+      display: inline-block;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #00422d;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .back-link:hover { text-decoration: underline; }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      margin-top: 3rem;
+      background: #222;
+      color: #fff;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>J Alessandro Briseño Tapia</h1>
+    <nav>
+      <a href="../index.html">Home</a>
+      <div class="dropdown" id="proj-dropdown">
+        <button class="dropdown-toggle" onclick="document.getElementById('proj-dropdown').classList.toggle('open')">
+          Projects ▾
+        </button>
+        <div class="dropdown-menu">
+          <a class="all-link" href="all_projects.html">All Projects</a>
+          <a href="research.html">Research</a>
+          <a href="engineering.html">Engineering</a>
+          <a href="coursework.html">Coursework</a>
+          <a href="music.html">Music</a>
+          <a href="miscellaneous.html">Miscellaneous</a>
+        </div>
+      </div>
+      <a href="../mystory.html">My Story</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <div class="container">
+
+    <h1>Project Title Goes Here</h1>
+    <p class="subtitle">One-line summary of what this project is about</p>
+
+    <img class="hero-image" src="../media/project1.jpg" alt="Hero image description" />
+
+    <div class="meta">
+      <span><strong>Date:</strong> Spring 2025</span>
+      <span><strong>Course / Context:</strong> MIT 2.14</span>
+      <span><strong>Tools:</strong> Python, MuJoCo</span>
+    </div>
+
+    <h2>Overview</h2>
+    <p>
+      Write 2–3 sentences describing what this project is and why you did it.
+      What problem were you solving? What was the goal?
+    </p>
+
+    <h2>Approach</h2>
+    <p>
+      Describe how you tackled the problem. What methods, tools, or techniques did you use?
+      This is a good place to show technical depth.
+    </p>
+
+    <!-- ═══════════════════════════════════════════
+         GALLERY — mix and match blocks as needed
+         ═══════════════════════════════════════════ -->
+    <h2>Gallery</h2>
+    <div class="gallery">
+
+      <!-- FULL-WIDTH IMAGE -->
+      <div class="gallery-item">
+        <img src="../media/project1_full.jpg" alt="System overview diagram" />
+        <div class="gallery-caption">
+          <strong>System overview</strong>
+          Describe what's shown here.
+        </div>
+      </div>
+
+      <!-- TWO IMAGES SIDE BY SIDE -->
+      <div class="gallery-row-2">
+        <div class="gallery-item">
+          <img src="../media/project1_a.jpg" alt="Before" />
+          <div class="gallery-caption"><strong>Before</strong> Short caption.</div>
+        </div>
+        <div class="gallery-item">
+          <img src="../media/project1_b.jpg" alt="After" />
+          <div class="gallery-caption"><strong>After</strong> Short caption.</div>
+        </div>
+      </div>
+
+      <!-- THREE IMAGES IN A ROW -->
+      <div class="gallery-row-3">
+        <div class="gallery-item">
+          <img src="../media/project1_step1.jpg" alt="Step 1" />
+          <div class="gallery-caption"><strong>Step 1</strong> Caption here.</div>
+        </div>
+        <div class="gallery-item">
+          <img src="../media/project1_step2.jpg" alt="Step 2" />
+          <div class="gallery-caption"><strong>Step 2</strong> Caption here.</div>
+        </div>
+        <div class="gallery-item">
+          <img src="../media/project1_step3.jpg" alt="Step 3" />
+          <div class="gallery-caption"><strong>Step 3</strong> Caption here.</div>
+        </div>
+      </div>
+
+      <!-- SELF-HOSTED VIDEO -->
+      <div class="gallery-item">
+        <video controls poster="../media/project1_video_thumb.jpg">
+          <source src="../media/project1_demo.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <div class="gallery-caption">
+          <strong>Demo video</strong>
+          Describe what's happening in the video.
+        </div>
+      </div>
+
+      <!-- YOUTUBE EMBED (replace VIDEO_ID) -->
+      <div class="gallery-item">
+        <div class="video-embed">
+          <iframe
+            src="https://www.youtube.com/embed/W8fNUeH7FQY"
+            title="YouTube video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="gallery-caption">
+          <strong>YouTube video title</strong>
+          Describe what this video shows.
+        </div>
+      </div>
+
+    </div>
+    <!-- ═══════════════ END GALLERY ═══════════════ -->
+
+    <!-- ═══════════════════════════════════════════
+         FILES & DOCUMENTS
+         ═══════════════════════════════════════════ -->
+    <h2>Files &amp; Documents</h2>
+    <div class="file-section">
+
+      <!-- Inline PDF viewer + download -->
+      <div class="file-item">
+        <div class="file-header">
+          <span>📄 Project Report</span>
+          <a href="../media/0_SITE_MEDIA/test_pdf.pdf" download class="download-btn">Download PDF</a>
+        </div>
+        <iframe src="../media/0_SITE_MEDIA/test_pdf.pdf" class="pdf-viewer"></iframe>
+      </div>
+
+    </div>
+    <!-- ═══════════════ END FILES ═══════════════ -->
+
+    <h2>Results</h2>
+    <p>
+      What did you achieve? Include any quantitative results, demos, or outcomes.
+      What did you learn?
+    </p>
+
+    <a class="back-link" href="all_projects.html">← Back to Projects</a>
+
+  </div>
+
+  <footer>
+    <p>© 2026 J Alessandro Briseño Tapia | Built with HTML &amp; CSS</p>
+  </footer>
+
+  <script>
+    document.addEventListener('click', function(e) {
+      var d = document.getElementById('proj-dropdown');
+      if (d && !d.contains(e.target)) d.classList.remove('open');
+    });
+  </script>
+
+</body>
+</html>
+
+<!-- magic words: git add ., git commit -m "comment", git push origin main -->
